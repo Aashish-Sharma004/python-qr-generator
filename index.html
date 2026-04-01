@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python QR Code Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .qr-result {
+            margin-top: 30px;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <p>Enter a URL or any text to generate a QR code.</p>
+        
+        <form method="POST">
+            <input type="text" name="data" placeholder="https://example.com" required>
+            <br>
+            <button type="submit">Generate Code</button>
+        </form>
+
+        {% if qr_code %}
+            <div class="qr-result">
+                <h3>Your QR Code:</h3>
+                <img src="data:image/png;base64,{{ qr_code }}" alt="Generated QR Code" width="250">
+                <br>
+                <a class="download-btn" href="data:image/png;base64,{{ qr_code }}" download="my_qr_code.png">⬇️ Download QR Code</a>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
